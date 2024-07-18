@@ -115,11 +115,7 @@ export default {
                         }
                     })
                     .catch(error => {
-                        if (error.response && error.response.data.errors) {
-                            this.errors = Object.values(error.response.data.errors).flat()
-                        } else {
-                            this.errors.push('Something went wrong. Please try again')
-                        }
+                        console.log('error', error)
                     })
             }
         }
