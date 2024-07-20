@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+WEBSITE_URL = 'http://127.0.0.1:8000'
+
 
 # Application definition
 
@@ -56,12 +58,12 @@ CORS_ALLOW_ALL_ORIGINS = True
 # If you want to specify allowed origins instead
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5173",
-    "http://localhost:5173",
+    # "http://localhost:5173",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:5173",
-    "http://localhost:5173",
+    # "http://localhost:5173",
 ]
 
 INSTALLED_APPS = [
