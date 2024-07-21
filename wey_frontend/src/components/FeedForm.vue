@@ -1,10 +1,16 @@
 <template>
     <form v-on:submit.prevent="submitForm" method="post">
         <div class="p-4">  
-            <textarea v-model="body" class="p-4 w-full bg-gray-100 rounded-lg" placeholder="What are you thinking about?"></textarea>
+            <textarea
+                v-model="body"
+                name="body"  
+                id="body"    
+                class="p-4 w-full bg-gray-100 rounded-lg"
+                placeholder="Bạn đang nghĩ gì?"
+            ></textarea>
 
             <label>
-                <input type="checkbox" v-model="is_private"> Private
+                <input type="checkbox" v-model="is_private" name="is_private"> Riêng tư
             </label>
 
             <div id="preview" v-if="url">
@@ -14,11 +20,17 @@
 
         <div class="p-4 border-t border-gray-100 flex justify-between">
             <label class="inline-block py-4 px-6 bg-gray-600 text-white rounded-lg">
-                <input type="file" ref="file" @change="onFileChange">
-                Attach image
+                <input
+                    type="file"
+                    ref="file"
+                    @change="onFileChange"  
+                    name="file"  
+                    id="file"    
+                >
+                Đính kèm ảnh
             </label>
 
-            <button class="inline-block py-4 px-6 bg-purple-600 text-white rounded-lg">Post</button>
+            <button class="inline-block py-4 px-6 bg-purple-600 text-white rounded-lg">Đăng</button>
         </div>
     </form>
 </template>
@@ -36,18 +48,29 @@ export default {
         return {
             body: '',
             is_private: false,
-            url: null,
+            url: null,  
         }
     },
 
     methods: {
-        submitForm() {
-            console.log('submitForm', this.body)
+        onFileChange(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    this.url = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        },
 
-            let formData = new FormData()
-            formData.append('image', this.$refs.file.files[0])
-            formData.append('body', this.body)
-            formData.append('is_private', this.is_private)
+        submitForm() {
+            console.log('submitForm', this.body);
+
+            let formData = new FormData();
+            formData.append('image', this.$refs.file.files[0]);
+            formData.append('body', this.body);
+            formData.append('is_private', this.is_private);
 
             axios
                 .post('/api/posts/create/', formData, {
@@ -56,21 +79,21 @@ export default {
                     }
                 })
                 .then(response => {
-                    console.log('data', response.data)
+                    console.log('data', response.data);
 
-                    this.posts.unshift(response.data)
-                    this.body = ''
-                    this.is_private = false
-                    this.$refs.file.value = null
-                    this.url = null
+                    this.posts.unshift(response.data);
+                    this.body = '';
+                    this.is_private = false;
+                    this.$refs.file.value = null;
+                    this.url = null;
 
                     if (this.user) {
-                        this.user.posts_count += 1
+                        this.user.posts_count += 1;
                     }
                 })
                 .catch(error => {
-                    console.log('error', error)
-                })
+                    console.log('error', error);
+                });
         },
     }
 }

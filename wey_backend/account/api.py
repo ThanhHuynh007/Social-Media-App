@@ -100,7 +100,7 @@ def editprofile(request):
         serializer = UserSerializer(user)
 
         return JsonResponse({'message': 'information updated', 'user': serializer.data})
-    
+   
 
 @api_view(['POST'])
 def editpassword(request):

@@ -3,8 +3,11 @@
         <div class="max-w-7xl mx-auto">
             <div class="flex items-center justify-between">
                 <div class="menu-left">
-                    <a href="#" class="text-xl">Wey</a>
+                    <a href="#" class="text-xl">
+                        <img src="@/assets/WEY_transparent.png" alt="Wey Logo" class="custom-logo">
+                    </a>
                 </div>
+
 
                 <div class="menu-center flex space-x-12" v-if="userStore.user.isAuthenticated">
                     <RouterLink to="/feed" class="text-purple-700">
@@ -86,3 +89,10 @@
         }
     }
 </script>
+
+<style scoped>
+.custom-logo {
+    height: 40px; /* Chiều cao của ảnh */
+    width: auto;  /* Để giữ tỷ lệ khung hình */
+}
+</style>

@@ -28,7 +28,7 @@
 
                     <div>
                         <label>Avatar</label><br>
-                        <input type="file" ref="file">
+                        <input type="file" ref="file" class="file-input">
                     </div>
 
                     <template v-if="errors.length > 0">
@@ -121,3 +121,14 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.file-input {
+    display: block; /* Ensure the file input is displayed as a block element */
+    margin-top: 10px; /* Adjust spacing as needed */
+    padding: 10px; /* Add padding if needed */
+    border: 1px solid #ccc; /* Add border styling */
+    border-radius: 4px; /* Add border-radius if needed */
+    background-color: #f9f9f9; /* Background color to make it visible */
+}
+</style>

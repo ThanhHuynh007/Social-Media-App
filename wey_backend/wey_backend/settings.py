@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-u9wq_qif*16b2h3%5zwb$-76d(rx09wazfzl7$6wo2j4^x-j90
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 WEBSITE_URL = 'http://127.0.0.1:8000'
 
@@ -38,8 +38,8 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 AUTH_USER_MODEL = 'account.User'
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=30),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=180),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'ROTATE_REFRESH_TOKENS': False,
 }
 
@@ -52,18 +52,29 @@ REST_FRAMEWORK = {
     )
 }
 
+# Cookie settings
+SESSION_COOKIE_SAMESITE = 'None'  # This setting allows cookies to be sent in cross-site contexts
+SESSION_COOKIE_SECURE = True  # This setting ensures cookies are only sent over HTTPS
+
+CSRF_COOKIE_SAMESITE = 'None'  # SameSite setting for CSRF cookies
+CSRF_COOKIE_SECURE = True  # Ensure CSRF cookies are sent only over HTTPS
+
+# Ensure that the browser will partition cookies properly
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_HTTPONLY = True
+
 # CORS Configuration
 CORS_ALLOW_ALL_ORIGINS = True
 
 # If you want to specify allowed origins instead
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5173",
-    # "http://localhost:5173",
+    "http://localhost:5173",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:5173",
-    # "http://localhost:5173",
+    "http://localhost:5173",
 ]
 
 INSTALLED_APPS = [

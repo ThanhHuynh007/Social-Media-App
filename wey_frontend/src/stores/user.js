@@ -52,7 +52,7 @@ export const useUserStore = defineStore({
 
         removeToken() {
             console.log('removeToken')
-
+        
             this.user.refresh = null
             this.user.access = null
             this.user.isAuthenticated = false
@@ -60,13 +60,13 @@ export const useUserStore = defineStore({
             this.user.name = null
             this.user.email = null
             this.user.avatar = null
-
-            localStorage.setItem('user.access', '')
-            localStorage.setItem('user.refresh', '')
-            localStorage.setItem('user.id', '')
-            localStorage.setItem('user.name', '')
-            localStorage.setItem('user.email', '')
-            localStorage.setItem('user.avatar', '')
+        
+            localStorage.removeItem('user.access')
+            localStorage.removeItem('user.refresh')
+            localStorage.removeItem('user.id')
+            localStorage.removeItem('user.name')
+            localStorage.removeItem('user.email')
+            localStorage.removeItem('user.avatar')
         },
 
         setUserInfo(user) {
@@ -89,18 +89,18 @@ export const useUserStore = defineStore({
             axios.post('/api/refresh/', {
                 refresh: this.user.refresh
             })
-                .then((response) => {
-                    this.user.access = response.data.access
-
-                    localStorage.setItem('user.access', response.data.access)
-
-                    axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.access
-                })
-                .catch((error)=>{
-                    console.log(error)
-
-                    this.removeToken()
-                })
+            .then((response) => {
+                this.user.access = response.data.access
+                localStorage.setItem('user.access', response.data.access)
+        
+                axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.access
+            })
+            .catch((error) => {
+                console.log('Error refreshing token:', error)
+        
+                this.removeToken()
+                // Có thể redirect đến trang login hoặc thông báo cho người dùng
+            })
         },
     }
 })
