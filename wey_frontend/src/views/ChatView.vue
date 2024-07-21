@@ -23,7 +23,7 @@
                             </template>
                         </div>
 
-                        <span class="text-xs text-gray-500">{{ conversation.modified_at_formatted }} ago</span>
+                        <span class="text-xs text-gray-500">{{ conversation.modified_at_formatted }} trước</span>
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                                 <div class="bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">
                                     <p class="text-sm">{{ message.body }}</p>
                                 </div>
-                                <span class="text-xs text-gray-500 leading-none">{{ message.created_at_formatted }} ago</span>
+                                <span class="text-xs text-gray-500 leading-none">{{ message.created_at_formatted }} trước</span>
                             </div>
                             <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">
                                 <img :src="message.created_by.get_avatar" class="w-[40px] rounded-full">
@@ -72,11 +72,11 @@
             <div class="bg-white border border-gray-200 rounded-lg">
                 <form v-on:submit.prevent="submitForm">
                     <div class="p-4">  
-                        <textarea v-model="body" class="p-4 w-full bg-gray-100 rounded-lg" placeholder="What do you want to say?"></textarea>
+                        <textarea v-model="body" class="p-4 w-full bg-gray-100 rounded-lg" placeholder="Bạn muốn nói gì?"></textarea>
                     </div>
 
                     <div class="p-4 border-t border-gray-100 flex justify-between">
-                        <button class="inline-block py-4 px-6 bg-purple-600 text-white rounded-lg">Send</button>
+                        <button class="inline-block py-4 px-6 bg-purple-600 text-white rounded-lg">Gửi</button>
                     </div>
                 </form>
             </div>
@@ -89,7 +89,7 @@ import axios from 'axios'
 import { useUserStore } from '@/stores/user'
 
 export default {
-    name: 'chat',
+    name: 'ChatView',
 
     setup() {
         const userStore = useUserStore()

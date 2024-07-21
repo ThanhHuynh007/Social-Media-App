@@ -2,47 +2,55 @@
     <div class="max-w-7xl mx-auto grid grid-cols-4 gap-4">
         <div class="main-left col-span-1">
             <div class="p-4 bg-white border border-gray-200 text-center rounded-lg">
-                <img :src="user.get_avatar" class="mb-6 rounded-full">
+                <img :src="user.get_avatar" class="mb-6 rounded-full" alt="User Avatar">
                 
                 <p><strong>{{ user.name }}</strong></p>
 
                 <div class="mt-6 flex space-x-8 justify-around" v-if="user.id">
-                    <RouterLink :to="{name: 'friends', params: {id: user.id}}" class="text-xs text-gray-500">{{ user.friends_count }} friends</RouterLink>
-                    <p class="text-xs text-gray-500">{{ user.posts_count }} posts</p>
+                    <RouterLink :to="{name: 'friends', params: {id: user.id}}" class="text-xs text-gray-500">{{ user.friends_count }} Bạn bè</RouterLink>
+                    <p class="text-xs text-gray-500">{{ user.posts_count }} Bài đăng</p>
                 </div>
 
-                <div class="mt-6">
-                    <button 
-                        class="inline-block py-4 px-3 bg-purple-600 text-xs text-white rounded-lg" 
-                        @click="sendFriendshipRequest"
-                        v-if="userStore.user.id !== user.id && can_send_friendship_request"
-                    >
-                        Send friendship request
-                    </button>
+                <div class="mt-6 space-y-4">
+                    <div class="flex justify-center space-x-2">
+                        <button 
+                            class="inline-block py-4 px-3 bg-purple-600 text-xs text-white rounded-lg" 
+                            @click="sendFriendshipRequest"
+                            v-if="userStore.user.id !== user.id && can_send_friendship_request"
+                            id="send-friendship-request"
+                        >
+                            Kết bạn
+                        </button>
 
-                    <button 
-                        class="inline-block mt-4 py-4 px-3 bg-purple-600 text-xs text-white rounded-lg" 
-                        @click="sendDirectMessage"
-                        v-if="userStore.user.id !== user.id"
-                    >
-                        Send direct message
-                    </button>
+                        <button 
+                            class="inline-block py-4 px-3 bg-purple-600 text-xs text-white rounded-lg" 
+                            @click="sendDirectMessage"
+                            v-if="userStore.user.id !== user.id"
+                            id="send-direct-message"
+                        >
+                            Nhắn tin
+                        </button>
+                    </div>
 
-                    <RouterLink 
-                        class="inline-block mr-2 py-4 px-3 bg-purple-600 text-xs text-white rounded-lg" 
-                        to="/profile/edit"
-                        v-if="userStore.user.id === user.id"
-                    >
-                        Edit profile
-                    </RouterLink>
+                    <div class="flex justify-center space-x-2">
+                        <RouterLink 
+                            class="inline-block py-4 px-3 bg-purple-600 text-xs text-white rounded-lg" 
+                            to="/profile/edit"
+                            v-if="userStore.user.id === user.id"
+                            id="edit-profile"
+                        >
+                            Sửa profile
+                        </RouterLink>
 
-                    <button 
-                        class="inline-block py-4 px-3 bg-red-600 text-xs text-white rounded-lg" 
-                        @click="logout"
-                        v-if="userStore.user.id === user.id"
-                    >
-                        Log out
-                    </button>
+                        <button 
+                            class="inline-block py-4 px-3 bg-red-600 text-xs text-white rounded-lg" 
+                            @click="logout"
+                            v-if="userStore.user.id === user.id"
+                            id="logout"
+                        >
+                            Đăng xuất
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -170,9 +178,9 @@ export default {
                     this.can_send_friendship_request = false
 
                     if (response.data.message == 'request already sent') {
-                        this.toastStore.showToast(5000, 'The request has already been sent!', 'bg-red-300')
+                        this.toastStore.showToast(5000, 'Đã gửi yêu cầu!', 'bg-red-300')
                     } else {
-                        this.toastStore.showToast(5000, 'The request was sent!', 'bg-emerald-300')
+                        this.toastStore.showToast(5000, 'Yêu cầu đã được gửi!', 'bg-emerald-300')
                     }
                 })
                 .catch(error => {
@@ -196,7 +204,7 @@ export default {
         },
 
         logout() {
-            console.log('Log out')
+            console.log('Đăng xuất')
 
             this.userStore.removeToken()
 

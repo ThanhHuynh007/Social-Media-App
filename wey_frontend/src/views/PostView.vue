@@ -19,11 +19,11 @@
             <div class="bg-white border border-gray-200 rounded-lg">
                 <form v-on:submit.prevent="submitForm" method="post">
                     <div class="p-4">  
-                        <textarea v-model="body" class="p-4 w-full bg-gray-100 rounded-lg" placeholder="What do you think?"></textarea>
+                        <textarea v-model="body" class="p-4 w-full bg-gray-100 rounded-lg" placeholder="Bạn nghĩ gì?"></textarea>
                     </div>
 
                     <div class="p-4 border-t border-gray-100">
-                        <button class="inline-block py-4 px-6 bg-purple-600 text-white rounded-lg">Comment</button>
+                        <button class="inline-block py-4 px-6 bg-purple-600 text-white rounded-lg">Bình luận</button>
                     </div>
                 </form>
             </div>
@@ -58,7 +58,8 @@ export default {
         return {
             post: {
                 id: null,
-                comments: []
+                comments: [],
+                comments_count: 0 // Thêm thuộc tính comments_count để theo dõi số lượng bình luận
             },
             body: ''
         }
@@ -93,7 +94,7 @@ export default {
                     console.log('data', response.data)
 
                     this.post.comments.push(response.data)
-                    this.post.comments_count += 1
+                    this.post.comments_count += 1 // Cập nhật số lượng bình luận
                     this.body = ''
                 })
                 .catch(error => {

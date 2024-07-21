@@ -9,14 +9,14 @@
             >
                 {{ notification.body }} 
 
-                <button class="underline" @click="readNotification(notification)">Read more</button>
+                <button class="underline" @click="readNotification(notification)">Đọc thêm</button>
             </div>
 
             <div 
                 class="p-4 bg-white border border-gray-200 rounded-lg"
                 v-else
             >
-                You don't have any unread notifications!
+                Bạn không có thông báo chưa đọc!
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
 import axios from 'axios'
 
 export default {
-    name: 'notifications',
+    name: 'NotificationsView',
 
     data() {
         return {
@@ -48,7 +48,7 @@ export default {
                     this.notifications = response.data
                 })
                 .catch(error => {
-                    console.log('Error: ', error)
+                    console.log('Lỗi: ', error)
                 })
         },
 
@@ -67,7 +67,7 @@ export default {
                     }
                 })
                 .catch(error => {
-                    console.log('Error: ', error)
+                    console.log('Lỗi: ', error)
                 })
         }
     }

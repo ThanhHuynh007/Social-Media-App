@@ -10,7 +10,7 @@
             ></textarea>
 
             <label>
-                <input type="checkbox" v-model="is_private" name="is_private"> Riêng tư
+                <input type="checkbox" v-model="is_private" name="is_private"> Private
             </label>
 
             <div id="preview" v-if="url">

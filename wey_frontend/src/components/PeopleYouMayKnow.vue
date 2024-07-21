@@ -1,6 +1,6 @@
 <template>
     <div class="p-4 bg-white border border-gray-200 rounded-lg">
-            <h3 class="mb-6 text-xl">People you may know</h3>
+            <h3 class="mb-6 text-xl">Những người bạn có thể biết</h3>
     
             <div class="space-y-4">
                 <div 

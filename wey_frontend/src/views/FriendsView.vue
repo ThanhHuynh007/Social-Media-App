@@ -116,33 +116,37 @@ export default {
     },
 
     methods: {
-        getFriends() {
-            axios
-                .get(`/api/friends/${this.$route.params.id}/`)
-                .then(response => {
-                    console.log('data', response.data)
+    getFriends() {
+        axios
+            .get(`/api/friends/${this.$route.params.id}/`)
+            .then(response => {
+                console.log('data', response.data)
 
-                    this.friendshipRequests = response.data.requests
-                    this.friends = response.data.friends
-                    this.user = response.data.user
-                })
-                .catch(error => {
-                    console.log('error', error)
-                })
-        },
+                this.friendshipRequests = response.data.requests
+                this.friends = response.data.friends
+                this.user = response.data.user
+            })
+            .catch(error => {
+                console.error('Lỗi khi tải dữ liệu:', error.response ? error.response.data : error.message)
+            })
+    },
 
-        handleRequest(status, pk) {
-            console.log('handleRequest', status)
+    handleRequest(status, pk) {
+        console.log('handleRequest', status)
 
-            axios
-                .post(`/api/friends/${pk}/${status}/`)
-                .then(response => {
-                    console.log('data', response.data)
-                })
-                .catch(error => {
-                    console.log('error', error)
-                })
-        }
+        axios
+            .post(`/api/friends/${pk}/${status}/`)
+            .then(response => {
+                console.log('data', response.data)
+                // Cập nhật giao diện sau khi xử lý yêu cầu
+                this.getFriends()  // Tải lại danh sách bạn bè và yêu cầu
+            })
+            .catch(error => {
+                console.error('Lỗi khi xử lý yêu cầu:', error.response ? error.response.data : error.message)
+                // Thông báo cho người dùng về lỗi
+                alert('Có lỗi xảy ra khi xử lý yêu cầu: ' + (error.response ? error.response.data.message : error.message))
+            })
     }
+}
 }
 </script>

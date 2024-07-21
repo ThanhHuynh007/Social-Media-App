@@ -2,15 +2,14 @@
     <div class="max-w-7xl mx-auto grid grid-cols-2 gap-4">
         <div class="main-left">
             <div class="p-12 bg-white border border-gray-200 rounded-lg">
-                <h1 class="mb-6 text-2xl">Log in</h1>
+                <h1 class="mb-6 text-2xl">Đăng nhập</h1>
 
                 <p class="mb-6 text-gray-500">
-                    Lorem ipsum dolor sit mate. Lorem ipsum dolor sit mate. Lorem ipsum dolor sit mate.
-                    Lorem ipsum dolor sit mate. Lorem ipsum dolor sit mate. Lorem ipsum dolor sit mate.
+                    Chào mừng trở lại! Vui lòng đăng nhập vào tài khoản Wey của bạn để tiếp tục kết nối với bạn bè, chia sẻ nội dung và khám phá cộng đồng. Nếu bạn chưa có tài khoản,
                 </p>
 
                 <p class="font-bold">
-                    Don't have an account? <RouterLink :to="{'name': 'signup'}" class="underline">Click here</RouterLink> to create one!
+                    Chưa có tài khoản? <RouterLink :to="{'name': 'signup'}" class="underline">Nhấn vào đây</RouterLink> để tạo một tài khoản mới!
                 </p>
             </div>
         </div>
@@ -19,13 +18,13 @@
             <div class="p-12 bg-white border border-gray-200 rounded-lg">
                 <form class="space-y-6" v-on:submit.prevent="submitForm">
                     <div>
-                        <label>E-mail</label><br>
-                        <input type="email" v-model="form.email" placeholder="Your e-mail address" class="w-full mt-2 py-4 px-6 border border-gray-200 rounded-lg">
+                        <label>Email</label><br>
+                        <input type="email" v-model="form.email" placeholder="Địa chỉ email của bạn" class="w-full mt-2 py-4 px-6 border border-gray-200 rounded-lg">
                     </div>
 
                     <div>
-                        <label>Password</label><br>
-                        <input type="password" v-model="form.password" placeholder="Your password" class="w-full mt-2 py-4 px-6 border border-gray-200 rounded-lg">
+                        <label>Mật khẩu</label><br>
+                        <input type="password" v-model="form.password" placeholder="Mật khẩu của bạn" class="w-full mt-2 py-4 px-6 border border-gray-200 rounded-lg">
                     </div>
 
                     <template v-if="errors.length > 0">
@@ -35,7 +34,7 @@
                     </template>
 
                     <div>
-                        <button class="py-4 px-6 bg-purple-600 text-white rounded-lg">Log in</button>
+                        <button class="py-4 px-6 bg-purple-600 text-white rounded-lg">Đăng nhập</button>
                     </div>
                 </form>
             </div>
@@ -45,7 +44,6 @@
 
 <script>
 import axios from 'axios'
-
 import { useUserStore } from '@/stores/user'
 
 export default {
@@ -71,11 +69,11 @@ export default {
             this.errors = []
 
             if (this.form.email === '') {
-                this.errors.push('Your e-mail is missing')
+                this.errors.push('Email của bạn còn thiếu')
             }
 
             if (this.form.password === '') {
-                this.errors.push('Your password is missing')
+                this.errors.push('Mật khẩu của bạn còn thiếu')
             }
 
             if (this.errors.length === 0) {
@@ -89,7 +87,7 @@ export default {
                     .catch(error => {
                         console.log('error', error)
 
-                        this.errors.push('The email or password is incorrect! Or the user is not activated!')
+                        this.errors.push('Email hoặc mật khẩu không chính xác! Hoặc tài khoản chưa được kích hoạt!')
                     })
             }
             
