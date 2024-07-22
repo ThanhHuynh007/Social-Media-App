@@ -7,8 +7,8 @@
                 <p><strong>{{ user.name }}</strong></p>
 
                 <div class="mt-6 flex space-x-8 justify-around">
-                    <p class="text-xs text-gray-500">{{ user.friends_count }} friends</p>
-                    <p class="text-xs text-gray-500">{{ user.posts_count }} posts</p>
+                    <p class="text-xs text-gray-500">{{ user.friends_count }} Bạn bè</p>
+                    <p class="text-xs text-gray-500">{{ user.posts_count }} Bài đăng</p>
                 </div>
             </div>
         </div>
@@ -39,8 +39,8 @@
                     </div>
 
                     <div class="mt-6 space-x-4">
-                        <button class="inline-block py-4 px-6 bg-purple-600 text-white rounded-lg" @click="handleRequest('accepted', friendshipRequest.created_by.id)">Accept</button>
-                        <button class="inline-block py-4 px-6 bg-red-600 text-white rounded-lg" @click="handleRequest('rejected', friendshipRequest.created_by.id)">Reject</button>
+                        <button class="inline-block py-4 px-6 bg-purple-600 text-white rounded-lg" @click="handleRequest('accepted', friendshipRequest.created_by.id)">Chấp nhận</button>
+                        <button class="inline-block py-4 px-6 bg-red-600 text-white rounded-lg" @click="handleRequest('rejected', friendshipRequest.created_by.id)">Từ chối</button>
                     </div>
                 </div>
 
@@ -65,8 +65,8 @@
                     </p>
 
                     <div class="mt-6 flex space-x-8 justify-around">
-                        <p class="text-xs text-gray-500">{{ user.friends_count }} friends</p>
-                        <p class="text-xs text-gray-500">{{ user.posts_count }} posts</p>
+                        <p class="text-xs text-gray-500">{{ user.friends_count }} Bạn bè</p>
+                        <p class="text-xs text-gray-500">{{ user.posts_count }} Bài đăng</p>
                     </div>
                 </div>
             </div>
