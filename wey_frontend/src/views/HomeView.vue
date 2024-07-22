@@ -30,7 +30,7 @@ import post1 from '@/assets/post1.jpg';
 import post2 from '@/assets/post2.jpg';
 
 export default {
-  name: 'HomeView',
+  name: 'home',
   data() {
     return {
       posts: [

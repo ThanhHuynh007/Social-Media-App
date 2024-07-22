@@ -18,7 +18,7 @@
                 class="p-4 bg-white border border-gray-200 rounded-lg"
                 v-if="friendshipRequests.length"
             >
-                <h2 class="mb-6 text-xl">Friendship requests</h2>
+                <h2 class="mb-6 text-xl">Kết bạn</h2>
 
                 <div 
                     class="p-4 text-center bg-gray-100 rounded-lg"
@@ -34,8 +34,8 @@
                     </p>
 
                     <div class="mt-6 flex space-x-8 justify-around">
-                        <p class="text-xs text-gray-500">{{ user.friends_count }} friends</p>
-                        <p class="text-xs text-gray-500">{{ user.posts_count }} posts</p>
+                        <p class="text-xs text-gray-500">{{ user.friends_count }} Bạn bè</p>
+                        <p class="text-xs text-gray-500">{{ user.posts_count }} Bài đăng</p>
                     </div>
 
                     <div class="mt-6 space-x-4">

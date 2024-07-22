@@ -3,7 +3,7 @@
         <div class="max-w-7xl mx-auto">
             <div class="flex items-center justify-between">
                 <div class="menu-left">
-                    <RouterLink to="/home" class="text-xl">
+                    <RouterLink to="/" class="text-xl">
                         <img src="@/assets/WEY_transparent.png" alt="Wey Logo" class="custom-logo">
                     </RouterLink>
                 </div>
