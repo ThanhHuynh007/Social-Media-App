@@ -12,22 +12,7 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Project Setup
 
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-### Cài đặt Backend
+### WEY Backend
 
 1. **Clone Repository**
 
@@ -63,7 +48,7 @@ npm run build
 
     Dự án sẽ chạy tại `http://127.0.0.1:8000`.
 
-### Cài đặt Frontend
+### WEY Frontend
 
 1. **Chuyển đến thư mục frontend**
 
