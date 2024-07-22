@@ -1,5 +1,5 @@
 from django.db.models import Q
-from django.http import JsonResponse, Http404
+from django.http import JsonResponse
 
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 
@@ -138,37 +138,13 @@ def post_create_comment(request, pk):
 
     return JsonResponse(serializer.data, safe=False)
 
-def delete_comment(request, post_id, comment_id):
-    if request.method == 'DELETE':
-        try:
-            comment = Comment.objects.get(id=comment_id, post_id=post_id)
-            comment.delete()
-            return JsonResponse({'message': 'Comment deleted successfully'})
-        except Comment.DoesNotExist:
-            raise Http404("Comment not found")
-    else:
-        return JsonResponse({'error': 'Invalid method'}, status=405)
-
 
 @api_view(['DELETE'])
 def post_delete(request, pk):
-    try:
-        post = Post.objects.filter(created_by=request.user).get(pk=pk)
-        user = post.created_by  # Lấy người dùng đã tạo bài viết
+    post = Post.objects.filter(created_by=request.user).get(pk=pk)
+    post.delete()
 
-        post.delete()
-
-        # Cập nhật số lượng bài đăng của người dùng
-        user.posts_count -= 1
-        user.save()
-        
-        # Cập nhật số lượng bài viết của người dùng
-        user.posts_count = Post.objects.filter(created_by=user).count()
-        user.save()
-
-        return JsonResponse({'message': 'Post deleted and user post count updated'})
-    except Post.DoesNotExist:
-        return JsonResponse({'error': 'Post not found'}, status=404)
+    return JsonResponse({'message': 'post deleted'})
 
 
 @api_view(['POST'])
